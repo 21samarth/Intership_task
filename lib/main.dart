@@ -140,7 +140,9 @@ class _LandingPageState extends State<LandingPage> {
           Padding(
             padding: const EdgeInsets.only(right: 10),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                scaffoldKey.currentState!.openEndDrawer();
+              },
               icon: Icon(
                 Icons.account_circle_outlined,
                 color: Colors.white,
@@ -682,7 +684,7 @@ class _LandingPageState extends State<LandingPage> {
                         height: 50,
                         child: CustomDropdown<String>(
                           hintText: 'Select',
-                          items: ["1 lakh","5 lakh","10 lakh","15 lakh","20 lakh","25 lakh"],
+                          items: ["1 LAKH","5 LAKH","10 LAKH","15 LAKH","20 LAKH","25 LAKH"],
                           initialItem: "1 LAKH",
                           onChanged: (value) {
                             print(value);
@@ -732,3 +734,4 @@ class _LandingPageState extends State<LandingPage> {
     );
   }
 }
+
