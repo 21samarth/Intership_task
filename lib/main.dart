@@ -1,7 +1,7 @@
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:intership_task/components/CardComponent.dart';
-import 'package:intership_task/components/FromDropDownComponent.dart';
 import 'package:intership_task/components/NavOptionComponent.dart';
 
 void main() {
@@ -38,9 +38,10 @@ class _LandingPageState extends State<LandingPage> {
   bool btnTwo = false;
   bool btnThree = false;
   String selectedProperty = "Select Property";
+  String selectedPropertySize = "Select Property";
   String selectedLocation = "Select Location";
   String selectedPrice = "Select Price";
-  String? selectedValue;
+  String selectedValue = '';
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -286,11 +287,12 @@ class _LandingPageState extends State<LandingPage> {
                                     ],
                                   ),
                                   SizedBox(width: width*0.2,),
-                                  Navoptioncomponent(title: "HOME",option1: "DEFAULT",option2: "WITH CAPTION FORM",option3: "WITH MAP",option4: "WITH IMAGE BANNER",selectedProperty: selectedProperty),
-                                  Navoptioncomponent(title: "PROPERTIES",option1: "GRID LAYOUT",option2: "LIST LAYOUT",option3: "WITH TABS",option4: "WITH PARALLAX",selectedProperty: selectedProperty),
-                                  Navoptioncomponent(title: "PROPERTY",option1: "DEFAULT LAYOUT",option2: "PROPERTY LAYOUT V1",option3: "PROPERTY LAYOUT V2",option4: "PROPERTY LAYOUT V3",selectedProperty: selectedProperty),
-                                  Navoptioncomponent(title: "REALTORS",option1: "AGENTS",option2: "AGENTS PROFILE",option3: "AGENCIES",option4: "AGENCIES PROFILE",selectedProperty: selectedProperty),
-                                  Navoptioncomponent(title: "OTHERS",option1: "ABOUT",option2: "CONTACT US",option3: "FAQ",option4: "BLOG",selectedProperty: selectedProperty),
+                                  // Test(),
+                                  Navoptioncomponent(title: "HOME",item1: "DEFAULT",item2: "WITH MAP",item3: "With Video",item4: "WITH IMAGE BANNER",),
+                                  Navoptioncomponent(title: "PROPERTIES",item1: "GRID LAYOUT",item2: "LIST LAYOUT",item3: "WITH TABS",item4: "WITH PARALLAX"),
+                                  Navoptioncomponent(title: "PROPERTY",item1: "DEFAULT LAYOUT",item2: "PROPERTY LAYOUT V1",item3: "PROPERTY LAYOUT V2",item4: "PROPERTY LAYOUT V3",),
+                                  Navoptioncomponent(title: "REALTORS",item1: "AGENTS",item2: "AGENTS PROFILE",item3: "AGENCIES",item4: "AGENCIES PROFILE",),
+                                  Navoptioncomponent(title: "OTHERS",item1: "ABOUT",item2: "CONTACT US",item3: "FAQ",item4: "BLOG"),
                                   Padding(
                                     padding: const EdgeInsets.all(10.0),
                                     child: Icon(Icons.wifi_calling_3_rounded,color: Colors.white,),
@@ -523,15 +525,35 @@ class _LandingPageState extends State<LandingPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AutoSizeText("LOOKING FOR"),
-                        Fromdropdowncomponent(title: "Property Type", selectedProperty: selectedProperty, option1: "House", option2: "plot", option3: "Villa", option4: "Hotels", option5: "Farms"),
-
+                        Container(
+                          width: 150,
+                          height: 50,
+                          child: CustomDropdown<String>(
+                            hintText: 'Select',
+                            items: ["HOUSE","VILLA","OFFICE","SHOP","APPARTMENT"],
+                            initialItem: "HOUSE",
+                            onChanged: (value) {
+                              print(value);
+                            },
+                          ),
+                        ),
                       ],
                     ), Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AutoSizeText("LOCATION"),
-                        Fromdropdowncomponent(title: "City", selectedProperty: selectedProperty, option1: "Dewas", option2: "Indore", option3: "Ujjain", option4: "bhopal", option5: "Guna"),
+                        Container(
+                          width: 150,height: 50,
+                          child: CustomDropdown<String>(
+                            hintText: 'Select',
+                            items: ["DEWAS","INDORE","UJJAIN","DHAR","BHOPAL","SHAJAPUR"],
+                            initialItem: "DEWAS",
+                            onChanged: (value) {
+                              print(value);
+                            },
+                          ),
+                        ),
                       ],
                     ),
                     Column(
@@ -539,16 +561,36 @@ class _LandingPageState extends State<LandingPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AutoSizeText("PROPERTY SIZE"),
-                        Fromdropdowncomponent(title: "Property Size", selectedProperty: selectedProperty, option1: "500 sqft", option2: "1000 sqft", option3: "1500sqft", option4: "2000 sqft", option5: "2500 sqft"),
-
+                        Container(
+                          width: 150,
+                          height: 50,
+                          child: CustomDropdown<String>(
+                            hintText: 'Select',
+                            items: ["1000SQFT","2000SQFT","3000SQFT","4000SQFT","5000SQFT","6000SQFT"],
+                            initialItem: "1000SQFT",
+                            onChanged: (value) {
+                              print(value);
+                            },
+                          ),
+                        ),
                       ],
                     ),Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AutoSizeText("MAX. BUDGET"),
-                        Fromdropdowncomponent(title: "Max. Price", selectedProperty: selectedProperty, option1: "1 lakh", option2: "5 lakh", option3: "10 lakh", option4: "15 lakh", option5: "20 lakh"),
-
+                         Container(
+                           width: 150,
+                           height: 50,
+                           child: CustomDropdown<String>(
+                             hintText: 'Select',
+                             items: ["1 LAKH","5 LAKH","10 LAKH","15 LAKH","20 LAKH"],
+                             initialItem: "1 LAKH",
+                             onChanged: (value) {
+                               print(value);
+                             },
+                           ),
+                         ),
 
                       ],
                     ),
@@ -587,26 +629,66 @@ class _LandingPageState extends State<LandingPage> {
                         padding: const EdgeInsets.all(12.0),
                         child: AutoSizeText("LOOKING FOR"),
                       ),
-                      Fromdropdowncomponent(title: "Property Type", selectedProperty: selectedProperty, option1: "House", option2: "plot", option3: "Villa", option4: "Hotels", option5: "Farms"),
-
+                      Container(
+                        width: 150,
+                        height: 50,
+                        child: CustomDropdown<String>(
+                          hintText: 'Select',
+                          items: ["HOUSE","VILLA","OFFICE","SHOP","APARTMENT"],
+                          initialItem: "HOUSE",
+                          onChanged: (value) {
+                            print(value);
+                          },
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: AutoSizeText("LOCATION"),
                       ),
-                      Fromdropdowncomponent(title: "City", selectedProperty: selectedProperty, option1: "Dewas", option2: "Indore", option3: "Ujjain", option4: "bhopal", option5: "Guna"),
-
+                      Container(
+                        width: 150,
+                        height: 50,
+                        child: CustomDropdown<String>(
+                          hintText: 'Select Property',
+                          items: ["DEWAS","INDORE","UJJAIN","DHAR","BHOPAL","SHAJAPUR"],
+                          initialItem: "DEWAS",
+                          onChanged: (value) {
+                            print(value);
+                          },
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: AutoSizeText("PROPERTY SIZE"),
                       ),
-                      Fromdropdowncomponent(title: "Property Size", selectedProperty: selectedProperty, option1: "500 sqft", option2: "1000 sqft", option3: "1500sqft", option4: "2000 sqft", option5: "2500 sqft"),
-
+                      Container(
+                        width: 150,
+                        height: 50,
+                        child: CustomDropdown<String>(
+                          hintText: 'Select',
+                          items: ["1000sqft","2000sqft","3000sqft","4000sqft","5000sqft","6000sqft"],
+                          initialItem: "1000sqft",
+                          onChanged: (value) {
+                            print(value);
+                          },
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: AutoSizeText("MAX. BUDGET"),
                       ),
-                      Fromdropdowncomponent(title: "Max. Price", selectedProperty: selectedProperty, option1: "1 lakh", option2: "5 lakh", option3: "10 lakh", option4: "15 lakh", option5: "20 lakh"),
-
+                      Container(
+                        width: 150,
+                        height: 50,
+                        child: CustomDropdown<String>(
+                          hintText: 'Select',
+                          items: ["1 lakh","5 lakh","10 lakh","15 lakh","20 lakh","25 lakh"],
+                          initialItem: "1 LAKH",
+                          onChanged: (value) {
+                            print(value);
+                          },
+                        ),
+                      ),
                       Center(
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),
